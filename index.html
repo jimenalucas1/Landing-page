@@ -115,17 +115,6 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        const counter = document.getElementById('visit-counter');
-        fetch('https://api.countapi.xyz/hit/matricula261.com/visits')
-            .then(res => res.json())
-            .then(data => {
-                counter.textContent = data.value;
-            })
-            .catch(() => {
-                counter.textContent = 'error';
-            });
-    </script>
 
 </body>
 </html>
