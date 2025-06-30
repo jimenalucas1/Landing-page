@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Contador de visitas usando CountAPI
   const counter = document.getElementById('visit-counter');
 
-  fetch('https://api.countapi.xyz/hit/matriculafiee261.com/visitas')
+  fetch('https://counterapi/hit/matriculafiee261.com/visitas')
     .then(response => response.json())
     .then(data => {
       counter.textContent = data.value;
