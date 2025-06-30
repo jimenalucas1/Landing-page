@@ -153,8 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Contador de visitas usando CountAPI
-fetch('https://counterapi.dev/api/v1/team/ana/counter/matriculafiee261/increase')
-  .then(response => response.json())
+fetch('https://counterapi.dev/api/v1/team/ana/counter/matriculafiee261/increase', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+  .then(res => res.json())
   .then(data => {
-    document.getElementById('visit-counter').innerText = data.value;
+    document.getElementById('visit-counter').textContent = data.value;
+  })
+  .catch(error => {
+    console.error('Error al contar visitas:', error);
   });
+
