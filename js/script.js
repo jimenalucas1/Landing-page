@@ -152,8 +152,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 // Contador de visitas usando CountAPI
-fetch('https://api.countapi.xyz/hit/matriculafiee261.com/visitas')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('visit-counter').innerText = data.value;
-  });
+  const counter = document.getElementById('visit-counter');
+
+  fetch('https://api.countapi.xyz/hit/matriculafiee261.com/visitas')
+    .then(response => response.json())
+    .then(data => {
+      counter.textContent = data.value;
+    })
+    .catch(error => {
+      console.error('Error al contar visitas:', error);
+      counter.textContent = 'Error';
+    });
+
