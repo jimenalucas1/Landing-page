@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
       counter.textContent = data.value;
     })
     .catch(error => {
-      console.error('Error al contar visitas:', error);
+      console.error("Error al contar visitas:", error);
       counter.textContent = '2064';
     });
 
