@@ -265,8 +265,99 @@ nav .logo {
     font-size: 1.15rem;
     line-height: 1.8;
     text-align: justify; /* Justificar párrafos */
-    /*margin-bottom: 20px;*/
     max-width: 800px; /* Ancho máximo para los párrafos de contenido */
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Propiedades clave para la transición */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+.lightbox.active {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-image-container { /* Opcional: si quieres un contenedor para la imagen con estilos propios */
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0; /* La imagen también empieza invisible */
+    transition: opacity 0.3s ease; /* La imagen se animará después de que el fondo aparezca */
+}
+
+.lightbox.active #lightbox-image {
+    opacity: 1; /* La imagen se vuelve visible cuando el lightbox está activo */
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.close-button:hover {
+    opacity: 1;
+}
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 4rem;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none; /* Evita que se seleccione el texto del botón */
+    padding: 0 20px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.nav-button:hover {
+    opacity: 1;
+}
+
+.prev-button {
+    left: 20px;
+}
+
+.next-button {
+    right: 20px;
+}
+
+/* Estilos para cuando los botones están deshabilitados */
+.nav-button.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 /* Contenedor del carrusel de noticias (si aplica) */
@@ -492,7 +583,6 @@ nav .logo {
     margin-right: -50px;
 }
 
-
 /* Estilo para los nuevos botones de formulario */
 .form-button {
     display: inline-block;
@@ -512,32 +602,6 @@ nav .logo {
 .form-button:hover {
     background-color: #0056b3;
     transform: translateY(-3px);
-}
-
-/* Botón de "Volver arriba" */
-#scrollToTopBtn {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 99;
-    font-size: 2.2rem;
-    background-color: #ffd700;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 55px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#scrollToTopBtn:hover {
-    background-color: #e6c200;
-    transform: translateY(-5px);
 }
 
 .page-wrapper {
