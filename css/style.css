@@ -187,8 +187,8 @@ nav .logo {
 }
 
 .login-button {
-    background-color: #333;       /* Color oscuro, moderno y serio */
-    color: #fff;                  /* Contraste con el fondo */
+    background-color: #333;
+    color: #fff;
     font-size: 15px;
     padding: 10px 24px;
     border: none;
