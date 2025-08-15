@@ -5,34 +5,71 @@ const navLinks = document.querySelectorAll('.nav-links li a');
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-links');
 
-// PARA SECCIÓN NOTICIAS
+
+// =====================================================================
+// Lógica para sección de noticias
+// =====================================================================
 const contenedor = document.querySelector('.contenedor-carrusel');
 const slides = document.querySelectorAll('.slide');
+const flechaIzquierda = document.querySelector('.flecha.izquierda');
+const flechaDerecha = document.querySelector('.flecha.derecha');
 const totalSlides = slides.length;
-const slidesPorVista = 2; // Cantidad de slides que se muestran a la vez
+let slidesPorVista = 3;
 let indice = 0;
 
-// Calcular el número de pasos posibles para el carrusel
-const numPasos = totalSlides - (slidesPorVista - 1);
+// Función para reconfigurar el carrusel según el tamaño de la pantalla
+function configurarCarrusel() {
+    // Detecta si la pantalla es de escritorio (> 768px) o de móvil (<= 768px)
+    if (window.innerWidth > 768) {
+        slidesPorVista = 3;
+    } else {
+        slidesPorVista = 1;
+    }
 
-// Flecha derecha → avanzar una noticia, con ciclo infinito
-document.querySelector('.flecha.derecha').addEventListener('click', () => {
-  indice = (indice + 1) % numPasos;
-  moverCarrusel();
-});
+    // Asegurarse de que el índice no sea mayor que el número de pasos posibles
+    // Esto previene errores visuales al cambiar el tamaño de la ventana
+    const numPasos = totalSlides - (slidesPorVista - 1);
+    if (indice >= numPasos) {
+        indice = numPasos - 1;
+    }
+    if (indice < 0) {
+        indice = 0;
+    }
 
-// Flecha izquierda ← retroceder una noticia, con ciclo infinito
-document.querySelector('.flecha.izquierda').addEventListener('click', () => {
-  indice = (indice - 1 + numPasos) % numPasos;
-  moverCarrusel();
-});
+    // Vuelve a aplicar la transformación con los nuevos valores
+    moverCarrusel();
+}
 
 // Función que aplica la transformación
 function moverCarrusel() {
-  contenedor.style.transform = `translateX(-${indice * (100 / slidesPorVista)}%)`;
+    const distancia = (100 / slidesPorVista) * indice;
+    contenedor.style.transform = `translateX(-${distancia}%)`;
 }
 
+// Evento para mover el carrusel a la derecha con bucle infinito
+flechaDerecha.addEventListener('click', () => {
+    const numPasos = totalSlides - (slidesPorVista - 1);
+    indice = (indice + 1) % numPasos;
+    moverCarrusel();
+});
 
+// Evento para mover el carrusel a la izquierda con bucle infinito
+flechaIzquierda.addEventListener('click', () => {
+    const numPasos = totalSlides - (slidesPorVista - 1);
+    indice = (indice - 1 + numPasos) % numPasos;
+    moverCarrusel();
+});
+
+// Oyentes de eventos para la adaptabilidad
+window.addEventListener('load', configurarCarrusel);
+window.addEventListener('resize', configurarCarrusel);
+
+// CULMINA SECCIÓN NOTICIAS
+
+
+// =====================================================================
+// Lógica para el boton de index que te mande arriba
+// =====================================================================
 
     // Lógica para mostrar/ocultar el botón de "Volver arriba"
     window.addEventListener('scroll', function() {
@@ -113,6 +150,3 @@ function moverCarrusel() {
             }
         });
     });
-
-
-
