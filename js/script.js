@@ -150,3 +150,5 @@ window.addEventListener('resize', configurarCarrusel);
             }
         });
     });
+
+
