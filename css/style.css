@@ -907,7 +907,7 @@ footer {
 
 footer {
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #212121;
   color: #ccc;
   margin-top: 2rem;
@@ -1041,8 +1041,19 @@ footer {
   width: 100%;
 }
 
+
+/* Ajusta el iframe para que ocupe el ancho del slide */
+.slide iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Mantiene la proporción común de los videos */
+  border: 0;
+  max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+}
+
 /* Para pantallas grandes (PC): 3 noticias por fila */
 .slide {
+  position: relative;
   min-width: calc(100% / 3 - 1rem);
   box-sizing: border-box;
   padding: 1rem;
@@ -1052,7 +1063,9 @@ footer {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px; /* Asegura un espaciado consistente */
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  overflow: hidden; /* Esto evita que el video se salga de su caja */
 }
+
 .slide:hover {
   transform: translateY(-5px) scale(1.02); /* Se levanta y se agranda un poco */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más profunda para el efecto de levitación */
@@ -1137,3 +1150,4 @@ footer {
     flex-direction: column;
     align-items: flex-end; /* Alinea el "Ver más" a la derecha */
 }
+
